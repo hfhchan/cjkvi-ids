@@ -23,24 +23,32 @@ normalize IDS and identify the ideographs would be important.
 ## Encoding Policies
 
 * Compatibility ideographs, whose IDS is not equal to their
-  corresponding unified ideographs, may be used as DCs. (e.g. ⻀)
+  corresponding unified ideographs, may be used as DCs. When there are
+  multiple compatibility ideographs with the same IDS, then the
+  one with smaller character code will be used.
+  (e.g. ⻀,並,荒,冗,叟,切,巢,廾,戛,桒,甾,𤾡,舁,蕤,貫,黾)
 
 * Following non-ideographs may be used as DCs (for now).
   "αℓ△⺀⺄⺆⺈⺊⺌⺍⺶⺸⺻⺼〇〢キサ㇀㇉㇢㇞"
 
 * Encircled numerics ① ～ ⑳ represents unencoded DCs. Number denotes
   its stroke count. This would be useful when calculating total
-  strokes of ideographs.
+  strokes of ideographs. Such convention does not conform with Annex I
+  of ISO/IEC 10646, so please replace them with wildcard character `？'
+  (U+FF1F) if you need strict conformance with the UCS standard.
 
-* '&CDP-XXXX;' entity reference notation (CDP stands for "Chinese
-  Document Processing lab") is inherited from [CHISE
-  project](http://www.chise.org). For details of usable entity
-  references, refer [an article on
-  CDP](http://glyphwiki.org/wiki/Group:CDP%E5%A4%96%E5%AD%97) at
-  GlyphWiki. They can be converted to Unicode BMP PUA (Privae Use
-  Area) characters by Microsoft [Big5 to PUA conversion
-  table](http://kanji-database.sourceforge.net/charcode/big5.html),
-  and HanaMinAFDKO Font support these glyphs in PUA.
+* IDS data file with name postfix "*-cdp.txt" adopts PUA characters
+  from CDP (CDP stands for "Chinese Document Processing lab") as DCs.
+
+  At the end of "ids-cdp.txt", mappings between PUA DCs and CDP
+  references are enumerated. For details of usable PUA characters,
+  refer
+  [an article on CDP](http://glyphwiki.org/wiki/Group:CDP%E5%A4%96%E5%AD%97)
+  at GlyphWiki. CDP's hexadecmail numbers and Unicode BMP PUA
+  character code relationship is based on EUDC codepoints defined by
+  by Microsoft
+  [Big5 to PUA conversion table](http://kanji-database.sourceforge.net/charcode/big5.html).
+  HanaMinAFDKO Font supports these glyphs in PUA.
 
 * IDS of compatibility ideographs may sometimes have compatibility
   ideographs as DCs, by mean of clarifying the difference of their
@@ -51,13 +59,15 @@ normalize IDS and identify the ideographs would be important.
   indicates AJ1-6 shapes, and "X" indicates virtual shape that is not
   actually appeared in the UCS specification, but possibly matches to
   that code points according to Annex S of UCS. Some of such shapes
-  may appear in OS-equipped fonts such as MingLiu, MS-Mincho and
-  SimSun, or several dictionaries such as Dai-Kanwa-Jiten.
+  may appear in OS-equipped fonts such as MingLiu, MS-Mincho or
+  SimSun, or several famous dictionaries such as "Dai Kanwa Jiten".
 
 ## Licenses
 
 * 'ids.txt' is derived from [CHISE project](http://www.chise.org/).
-  License follows their terms.
+  License follows their terms. 'ids-ext-cde.txt' is not directly based
+  on [CHISE project](http://www.chise.org/), and is not restricted to
+  GPLv2 license.
 
 * All other data are distributed uner GPLv2.
 
